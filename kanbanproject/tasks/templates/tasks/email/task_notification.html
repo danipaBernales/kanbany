@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #2F4F4F;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #78C2AD;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #DEE2E6;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .task-card {
+            background-color: #F8F9FA;
+            border: 1px solid #DEE2E6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .task-title {
+            color: #78C2AD;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .task-meta {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .task-description {
+            color: #2F4F4F;
+            margin-bottom: 15px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #78C2AD;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .footer {
+            text-align: center;
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        .priority-high {
+            color: #FF7851;
+        }
+        .priority-medium {
+            color: #56CC9D;
+        }
+        .priority-low {
+            color: #78C2AD;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Task Notification</h2>
+        </div>
+        
+        <div class="content">
+            <p>Hello {{ user.get_full_name|default:user.username }},</p>
+            
+            <p>{{ message }}</p>
+            
+            <div class="task-card">
+                <div class="task-title">{{ task.title }}</div>
+                <div class="task-meta">
+                    <strong>Status:</strong> {{ task.status }}<br>
+                    <strong>Priority:</strong> <span class="priority-{{ task.priority|lower }}">{{ task.priority }}</span><br>
+                    <strong>Due Date:</strong> {{ task.due_date|date:"F d, Y" }}
+                </div>
+                <div class="task-description">
+                    {{ task.description|truncatewords:30 }}
+                </div>
+                <a href="{{ task_url }}" class="button">View Task</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>This is an automated message from Kanbany. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* Import Minty theme from Bootswatch */
+@import url("https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/minty/bootstrap.min.css");
+
+/* Custom styles with Minty color palette */
+:root {
+  --primary-color: #78c2ad; /* Minty primary */
+  --secondary-color: #f8f9fa; /* Light background */
+  --accent-color: #56cc9d; /* Minty accent */
+  --background-color: #f8f9fa; /* Light grey */
+  --text-color: #2f4f4f; /* Dark Slate Gray */
+  --danger-color: #ff7851; /* Minty danger */
+  --success-color: #56cc9d; /* Minty success */
+  --highlight-color: #78c2ad; /* Minty highlight */
+  --border-color: #dee2e6; /* Light border */
+}
+
+/* Custom styles */
+.task-card {
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: white;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-column {
+  min-height: 500px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.task-status {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.task-priority {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
