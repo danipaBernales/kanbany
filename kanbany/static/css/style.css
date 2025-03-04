@@ -1,0 +1,177 @@
+/* Import Minty theme from Bootswatch */
+@import url('https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/minty/bootstrap.min.css');
+
+/* Custom styles with Minty color palette */
+:root {
+    --primary-color: #78C2AD;    /* Minty primary */
+    --secondary-color: #F8F9FA;  /* Light background */
+    --accent-color: #56CC9D;     /* Minty accent */
+    --background-color: #F8F9FA; /* Light grey */
+    --text-color: #2F4F4F;       /* Dark Slate Gray */
+    --danger-color: #FF7851;     /* Minty danger */
+    --success-color: #56CC9D;    /* Minty success */
+    --highlight-color: #78C2AD;  /* Minty highlight */
+    --border-color: #DEE2E6;     /* Light border */
+}
+
+/* Custom styles */
+.task-card {
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.kanban-column {
+    min-height: 500px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.task-status {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.task-priority {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.priority-high {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.priority-medium {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.priority-low {
+    background-color: var(--success-color);
+    color: white;
+}
+
+/* Form styles */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(120, 194, 173, 0.25);
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+/* Alert styles */
+.alert-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
+.alert-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
+}
+
+/* Card styles */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Table styles */
+.table {
+    --bs-table-hover-bg: rgba(120, 194, 173, 0.05);
+}
+
+/* Pagination styles */
+.page-link {
+    color: var(--primary-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Modal styles */
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+} 
