@@ -1,0 +1,67 @@
+# Python/Django Dependencies
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+staticfiles/
+*.manifest
+*.spec
+
+# Environment variables
+.env
+.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs
+logs/
+*.log
+local_settings.py
+db.sqlite3-journal
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Testing
+.coverage
+coverage/
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Temporary files
+.temp/
+.tmp/
+.cache
+.ipynb_checkpoints
+
+# Database
+db.sqlite3
+
+# Django specific
+media/
+static/admin/
+*.mo
+*.pot
+
+# Deployment
+.netlify/
+.supabase/
