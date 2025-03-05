@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <style>
+    .board { fill: #f8f9fa; stroke: #78c2ad; stroke-width: 4; }
+    .column { fill: white; stroke: #78c2ad; stroke-width: 2; }
+    .card { fill: #fff; stroke: #dee2e6; stroke-width: 1; }
+    .text { font-family: Arial; fill: #2f4f4f; }
+  </style>
+  
+  <!-- Main Board -->
+  <rect class="board" x="50" y="50" width="700" height="500" rx="10" />
+  
+  <!-- Columns -->
+  <rect class="column" x="100" y="100" width="180" height="400" rx="5" />
+  <rect class="column" x="310" y="100" width="180" height="400" rx="5" />
+  <rect class="column" x="520" y="100" width="180" height="400" rx="5" />
+  
+  <!-- Column Headers -->
+  <text class="text" x="150" y="140" font-size="20" font-weight="bold">To Do</text>
+  <text class="text" x="350" y="140" font-size="20" font-weight="bold">In Progress</text>
+  <text class="text" x="570" y="140" font-size="20" font-weight="bold">Done</text>
+  
+  <!-- Cards -->
+  <rect class="card" x="110" y="160" width="160" height="80" rx="3" />
+  <rect class="card" x="110" y="250" width="160" height="80" rx="3" />
+  <rect class="card" x="320" y="160" width="160" height="80" rx="3" />
+  <rect class="card" x="530" y="160" width="160" height="80" rx="3" />
+  <rect class="card" x="530" y="250" width="160" height="80" rx="3" />
+</svg>
