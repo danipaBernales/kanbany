@@ -4,9 +4,9 @@ from .models import Task, UserProfile
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'role']
-    list_filter = ['role']
-    search_fields = ['user__username', 'user__email']
+    list_display = ['user', 'position']
+    list_filter = ['position']
+    search_fields = ['user__username', 'user__email', 'bio', 'position']
     ordering = ['user__username']
 
 @admin.register(Task)
@@ -19,7 +19,7 @@ class TaskAdmin(admin.ModelAdmin):
         'created_by',
         'assigned_to',
         'due_date',
-        'last_edited'
+        'updated_at'
     ]
     list_filter = [
         'status',
@@ -35,7 +35,7 @@ class TaskAdmin(admin.ModelAdmin):
         'assigned_to__username'
     ]
     ordering = ['-priority', 'due_date', '-created_at']
-    readonly_fields = ['created_at', 'last_edited']
+    readonly_fields = ['created_at', 'updated_at']
     
     fieldsets = [
         (None, {
