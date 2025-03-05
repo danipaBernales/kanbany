@@ -50,3 +50,4 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             })
             
         return data
+
