@@ -24,7 +24,7 @@ A modern task management application built with Django and Bootstrap, featuring 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/kanbany.git
+git clone https://github.com/danipaBernales/kanbany.git
 cd kanbany
 ```
 
