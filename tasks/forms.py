@@ -7,14 +7,19 @@ from .models import Task, UserProfile
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['role']
+        fields = ['bio', 'avatar', 'phone_number', 'position']
         widgets = {
-            'role': forms.Select(attrs={'class': 'form-select'})
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'avatar': forms.FileInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'position': forms.TextInput(attrs={'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['role'].help_text = _('User role in the system')
+        self.fields['bio'].help_text = _('Tell us about yourself')
+        self.fields['phone_number'].help_text = _('Enter your contact number')
+        self.fields['position'].help_text = _('Your role or position in the organization')
 
 class TaskForm(forms.ModelForm):
     class Meta:
