@@ -1,0 +1,250 @@
+{% extends 'tasks/base.html' %} {% block title %}Welcome - Kanbany{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row align-items-center min-vh-75 py-5 mt-5">
+    <div class="col-lg-6 mb-5 mb-lg-0">
+      <div class="text-center text-lg-start">
+        <h2
+          class="display-4 fw-bold mb-4 text-uppercase"
+          style="color: #ff7851"
+        >
+          Welcome to
+        </h2>
+        <div
+          class="d-flex align-items-center justify-content-center justify-content-lg-start mb-4"
+        >
+          <i class="fas fa-tasks fa-4x me-3" style="color: #ff7851"></i>
+          <h1 class="display-1 fw-bold m-10" style="color: #ff7851">Kanbany</h1>
+        </div>
+        <p class="lead fs-3 mb-4" style="color: #e66a46">
+          Your modern task management solution. Organize, track, and collaborate
+          on projects with ease.
+        </p>
+        {% if not user.is_authenticated %}
+        <div class="d-grid gap-2 d-md-flex mb-5">
+          <a
+            href="{% url 'tasks:register' %}"
+            class="btn btn-success btn-lg me-md-2 shadow-sm"
+            style="background-color: #78c2ad; border-color: #78c2ad"
+          >
+            <i class="fas fa-user-plus me-2"></i>Get Started
+          </a>
+          <a
+            href="{% url 'tasks:login' %}"
+            class="btn btn-outline-success btn-lg shadow-sm"
+            style="
+              color: #78c2ad;
+              border-color: #78c2ad;
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.backgroundColor='#78c2ad'; this.style.color='white'"
+            onmouseout="this.style.backgroundColor='transparent'; this.style.color='#78c2ad'"
+          >
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+          </a>
+        </div>
+        {% else %}
+        <div class="d-grid gap-2 d-md-flex mb-5">
+          <a
+            href="{% url 'tasks:dashboard' %}"
+            class="btn btn-success btn-lg me-md-2 shadow-sm"
+            style="background-color: #78c2ad; border-color: #78c2ad"
+          >
+            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+          </a>
+          <a
+            href="{% url 'tasks:dashboard' %}"
+            class="btn btn-outline-success btn-lg shadow-sm"
+            style="color: #78c2ad; border-color: #78c2ad"
+          >
+            <i class="fas fa-list me-2"></i>View Tasks
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-6 mt-5 mt-lg-0">
+      <div class="card shadow border-0 bg-white rounded-lg">
+        <div class="card-body p-4">
+          <h3 class="card-title mb-4" style="color: #5a8a7b">Features</h3>
+          <div class="row g-4">
+            <div class="col-12 col-sm-6">
+              <div
+                class="d-flex align-items-center feature-card p-3 rounded h-100"
+                style="
+                  background: linear-gradient(135deg, #fff3f8 0%, #ffe4ef 100%);
+                "
+              >
+                <i class="fas fa-columns fa-2x me-3" style="color: #ff7851"></i>
+                <div>
+                  <h6 class="mb-1" style="color: #ff7851">Kanban Board</h6>
+                  <p class="small mb-0" style="color: #4a4a4a">
+                    Visual task management
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div
+                class="d-flex align-items-center feature-card p-3 rounded h-100"
+                style="
+                  background: linear-gradient(135deg, #f3faf7 0%, #e3f8f3 100%);
+                "
+              >
+                <i class="fas fa-users fa-2x me-3" style="color: #78c2ad"></i>
+                <div>
+                  <h6 class="mb-1" style="color: #78c2ad">
+                    Team Collaboration
+                  </h6>
+                  <p class="small mb-0" style="color: #4a4a4a">
+                    Work together seamlessly
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div
+                class="d-flex align-items-center feature-card p-3 rounded h-100"
+                style="
+                  background: linear-gradient(135deg, #fff3f8 0%, #ffe4ef 100%);
+                "
+              >
+                <i
+                  class="fas fa-chart-line fa-2x me-3"
+                  style="color: #ff7851"
+                ></i>
+                <div>
+                  <h6 class="mb-1" style="color: #ff7851">Progress Tracking</h6>
+                  <p class="small mb-0" style="color: #4a4a4a">
+                    Monitor project status
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div
+                class="d-flex align-items-center feature-card p-3 rounded h-100"
+                style="
+                  background: linear-gradient(135deg, #f3faf7 0%, #e3f8f3 100%);
+                "
+              >
+                <i class="fas fa-bell fa-2x me-3" style="color: #78c2ad"></i>
+                <div>
+                  <h6 class="mb-1" style="color: #78c2ad">Notifications</h6>
+                  <p class="small mb-0" style="color: #4a4a4a">Stay updated</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 py-5" style="background-color: #ffe4ef">
+    <div class="col-12">
+      <h2 class="text-center mb-4" style="color: #ff7851">
+        Why Choose Kanbany?
+      </h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <div
+            class="card shadow-sm h-100 border-0 bg-white rounded-lg hover-card"
+          >
+            <div class="card-body text-center p-4">
+              <i class="fas fa-rocket fa-3x mb-3" style="color: #78c2ad"></i>
+              <h4 style="color: #5a8a7b">Easy to Use</h4>
+              <p style="color: #4a4a4a">
+                Intuitive interface designed for maximum productivity
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <div
+            class="card shadow-sm h-100 border-0 bg-white rounded-lg hover-card"
+          >
+            <div class="card-body text-center p-4">
+              <i
+                class="fas fa-shield-alt fa-3x mb-3"
+                style="color: #ff7851"
+              ></i>
+              <h4 style="color: #ff7851">Secure</h4>
+              <p style="color: #4a4a4a">
+                Your data is protected with industry-standard security
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div
+            class="card shadow-sm h-100 border-0 bg-white rounded-lg hover-card"
+          >
+            <div class="card-body text-center p-4">
+              <i class="fas fa-sync fa-3x mb-3" style="color: #78c2ad"></i>
+              <h4 style="color: #5a8a7b">Real-time Updates</h4>
+              <p style="color: #4a4a4a">
+                Stay synchronized with your team in real-time
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .feature-card {
+      transition: transform 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+      height: 100%;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .hover-card {
+      transition: all 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 1rem 3rem rgba(120, 194, 173, 0.15) !important;
+    }
+    .btn-outline-success:hover {
+      background-color: #78c2ad !important;
+      color: white !important;
+      border-color: #78c2ad !important;
+    }
+
+    @media (max-width: 991.98px) {
+      .text-lg-start {
+        text-align: center !important;
+      }
+      .justify-content-lg-start {
+        justify-content: center !important;
+      }
+      .col-lg-6 {
+        padding: 0 15px;
+      }
+      .fa-tasks.fa-4x {
+        font-size: 3em;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .container {
+        padding: 0 20px;
+      }
+      .feature-card {
+        margin-bottom: 15px;
+      }
+      .fa-tasks.fa-4x {
+        font-size: 2.5em;
+      }
+      .display-1 {
+        font-size: calc(1.625rem + 4.5vw);
+      }
+    }
+  </style>
+  {% endblock %}
+</div>
