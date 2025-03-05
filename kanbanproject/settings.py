@@ -126,6 +126,10 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Authentication Settings
+LOGIN_REDIRECT_URL = 'tasks:dashboard'
+LOGIN_URL = 'tasks:login'
+
 # Site URL Configuration
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
 
