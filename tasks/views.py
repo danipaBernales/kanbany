@@ -24,9 +24,9 @@ def dashboard(request):
 
 @login_required
 def task_list(request):
-    todo_tasks = Task.objects.filter(status='TODO', user=request.user)
-    in_progress_tasks = Task.objects.filter(status='IN_PROGRESS', user=request.user)
-    review_tasks = Task.objects.filter(status='REVIEW', user=request.user)
+    todo_tasks = Task.objects.filter(status='TODO', assigned_to=request.user)
+    in_progress_tasks = Task.objects.filter(status='IN_PROGRESS', assigned_to=request.user)
+    review_tasks = Task.objects.filter(status='REVIEW', assigned_to=request.user)
     
     context = {
         'todo_tasks': todo_tasks,
