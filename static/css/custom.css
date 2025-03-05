@@ -1,0 +1,92 @@
+/* Custom styles for Kanban Board */
+
+/* General layout */
+#container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+#header {
+    background: var(--primary);
+    color: var(--primary-fg);
+    padding: 15px 20px;
+}
+
+#branding h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* User tools */
+#user-tools {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--primary-fg);
+}
+
+#user-tools a {
+    color: var(--primary-fg);
+    text-decoration: none;
+}
+
+#user-tools a:hover {
+    text-decoration: underline;
+}
+
+/* Content area */
+.content {
+    background: var(--body-bg);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Message */
+.messagelist {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.messagelist li {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    list-style: none;
+}
+
+.messagelist .success {
+    background: var(--message-success-bg);
+    color: var(--message-success-fg);
+}
+
+.messagelist .error {
+    background: var(--message-error-bg);
+    color: var(--message-error-fg);
+}
+
+/* Footer */
+#footer {
+    background: var(--primary);
+    color: var(--primary-fg);
+    padding: 10px 20px;
+    text-align: center;
+}
+
+#footer .content {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+#footer p {
+    margin: 0;
+    font-size: 14px;
+}
