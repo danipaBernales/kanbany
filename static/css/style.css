@@ -1,0 +1,150 @@
+/* Import Minty theme from Bootswatch */
+@import url("https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/minty/bootstrap.min.css");
+
+/* Custom styles with Minty color palette */
+:root {
+  --primary-color: #78c2ad;
+  --secondary-color: #f3969a;
+  --accent-color: #56cc9d;
+  --background-color: #f8f9fa;
+  --text-color: #2f4f4f;
+  --danger-color: #ff7851;
+  --success-color: #56cc9d;
+  --warning-color: #ffce67;
+  --info-color: #6cc3d5;
+  --border-color: #dee2e6;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: var(--primary-color) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Kanban Board Styling */
+.kanban-column {
+  min-height: 500px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kanban-column h5 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.task-card {
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+  border: none;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.task-card h6 {
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Priority Styling */
+.task-priority {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+}
+
+.priority-high {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.priority-medium {
+  background-color: var(--warning-color);
+  color: var(--text-color);
+}
+
+.priority-low {
+  background-color: var(--success-color);
+  color: white;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: darken(var(--primary-color), 10%);
+  border-color: darken(var(--primary-color), 10%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Alert Styling */
+.alert {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darken(var(--primary-color), 10%);
+}
