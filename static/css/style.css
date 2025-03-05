@@ -20,7 +20,7 @@ body {
   color: var(--text-color);
 }
 
-/* Navbar Styling */
+/* Navbar */
 .navbar {
   background-color: var(--primary-color) !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Kanban Board Styling */
+/* Kanban Board */
 .kanban-column {
   min-height: 500px;
   background-color: white;
@@ -76,7 +76,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* Priority Styling */
+/* Priority */
 .task-priority {
   font-size: 0.8rem;
   font-weight: 500;
@@ -99,7 +99,7 @@ body {
   color: white;
 }
 
-/* Button Styling */
+/* Button */
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -124,14 +124,14 @@ body {
   color: white;
 }
 
-/* Alert Styling */
+/* Alert */
 .alert {
   border-radius: 8px;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -148,3 +148,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: darken(var(--primary-color), 10%);
 }
+
