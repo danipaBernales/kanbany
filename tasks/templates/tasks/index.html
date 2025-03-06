@@ -1,21 +1,29 @@
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container">
   <div class="row align-items-center min-vh-75 py-5 mt-5">
     <div class="col-lg-6 mb-5 mb-lg-0">
       <div class="text-center text-lg-start">
         <h2
-          class="display-4 fw-bold mb-4 text-uppercase"
-          style="color: #ff7851"
+          class="display-5 fw-bold mb-4 text-uppercase"
+          style="color: var(--primary-color)"
         >
           Welcome to
         </h2>
         <div
           class="d-flex align-items-center justify-content-center justify-content-lg-start mb-4"
         >
-          <i class="fas fa-tasks fa-4x me-3" style="color: #ff7851"></i>
-          <h1 class="display-1 fw-bold m-10" style="color: #ff7851">Kanbany</h1>
+          <i
+            class="fas fa-tasks fa-4x me-3"
+            style="color: var(--primary-color)"
+          ></i>
+          <h1
+            class="display-1 fw-bold m-10"
+            style="color: var(--primary-color)"
+          >
+            Kanbany
+          </h1>
         </div>
-        <p class="lead fs-3 mb-4" style="color: #e66a46">
+        <p class="lead fs-3 mb-4" style="color: var(--text-color)">
           Your modern task management solution. Organize, track, and collaborate
           on projects with ease.
         </p>
@@ -30,14 +38,8 @@
           </a>
           <a
             href="{% url 'tasks:login' %}"
-            class="btn btn-outline-success btn-lg shadow-sm"
-            style="
-              color: #78c2ad;
-              border-color: #78c2ad;
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.backgroundColor='#78c2ad'; this.style.color='white'"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.color='#78c2ad'"
+            class="btn btn-success btn-lg shadow-sm"
+            style="background-color: #78c2ad; border-color: #78c2ad"
           >
             <i class="fas fa-sign-in-alt me-2"></i>Login
           </a>
@@ -60,6 +62,46 @@
         alt="Kanban Board Illustration"
         class="img-fluid"
       />
+    </div>
+  </div>
+
+  <!-- Feature Cards Section -->
+  <div class="row py-5">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <i class="fas fa-columns fa-3x mb-3" style="color: #22dba4"></i>
+          <h3 class="card-title h4 mb-3">Kanban Boards</h3>
+          <p class="card-text">
+            Visualize your workflow with customizable boards. Drag and drop
+            tasks to track progress effortlessly.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <i class="fas fa-users fa-3x mb-3" style="color: #e61592"></i>
+          <h3 class="card-title h4 mb-3">Team Collaboration</h3>
+          <p class="card-text">
+            Work together seamlessly with your team. Share tasks, updates, and
+            track progress in real-time.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <i class="fas fa-chart-line fa-3x mb-3" style="color: #0dcaf0"></i>
+          <h3 class="card-title h4 mb-3">Progress Tracking</h3>
+          <p class="card-text">
+            Monitor project progress with intuitive analytics. Make data-driven
+            decisions to improve productivity.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

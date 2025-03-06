@@ -9,11 +9,20 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class UserProfile(models.Model):
+    ROLE_CHOICES = [
+        ('MEMBER', 'Team Member'),
+        ('LEADER', 'Team Leader'),
+        ('ADMIN', 'Administrator')
+    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
     position = models.CharField(max_length=100, blank=True)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='MEMBER')
+    department = models.CharField(max_length=100, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
@@ -30,10 +39,20 @@ def save_user_profile(sender, instance, **kwargs):
 
 class WorkerGroup(models.Model):
     name = models.CharField(max_length=100)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='administered_groups')
+    description = models.TextField(blank=True)
+    leader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='led_groups')
     members = models.ManyToManyField(User, related_name='member_groups')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    max_members = models.PositiveIntegerField(default=10)
+    color_tag = models.CharField(max_length=7, default='#0d6efd')
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def get_active_members(self):
+        return self.members.filter(userprofile__is_active=True)
 
     def __str__(self):
         return self.name
@@ -67,7 +86,7 @@ class Task(models.Model):
     task_type = models.CharField(max_length=15, choices=TASK_TYPE_CHOICES, default='OTHER')
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_tasks')
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_tasks')
-    group = models.ForeignKey(WorkerGroup, on_delete=models.CASCADE, related_name='tasks')
+    group = models.ForeignKey(WorkerGroup, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     due_date = models.DateTimeField(null=True, blank=True)

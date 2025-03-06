@@ -109,6 +109,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Security Settings
 SECURE_SSL_REDIRECT = False
+
+# Additional security settings for development
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_PROXY_SSL_HEADER = None
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_PROXY_SSL_HEADER = None

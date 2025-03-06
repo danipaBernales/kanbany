@@ -9,7 +9,7 @@ A modern task management application built with Django and Bootstrap, featuring 
 - Task creation and management
 - Team collaboration
 - Priority and status tracking
-- Modern Minty theme from Bootswatch
+- Modern Pulse theme from Bootswatch
 - Responsive design
 
 ## Tech Stack
@@ -19,43 +19,52 @@ A modern task management application built with Django and Bootstrap, featuring 
 - PostgreSQL
 - Bootstrap 5.3
 - Font Awesome 6.0
+- Bootswatch Pulse theme
 
 ## Local Development Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/danipaBernales/kanbany.git
 cd kanbany
 ```
 
 2. Create and activate a virtual environment:
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 4. Create a .env file:
+
 ```bash
 cp .env.example .env
 ```
+
 Edit the .env file with your local settings.
 
 5. Run migrations:
+
 ```bash
 python manage.py migrate
 ```
 
 6. Create a superuser:
+
 ```bash
 python manage.py createsuperuser
 ```
 
 7. Run the development server:
+
 ```bash
 python manage.py runserver
 ```
@@ -68,6 +77,7 @@ Visit http://localhost:8000 to access the application.
 
 1. Create a new repository on GitHub
 2. Initialize git and push your code:
+
 ```bash
 git init
 git add .
@@ -82,6 +92,7 @@ git push -u origin main
 1. Create a new project on Supabase
 2. Get your database connection string
 3. Update your .env file with the Supabase credentials:
+
 ```
 DATABASE_URL=postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres
 ```
@@ -111,6 +122,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgments
 
 - [Bootstrap](https://getbootstrap.com/)
-- [Bootswatch](https://bootswatch.com/)
+- [Bootswatch Pulse Theme](https://bootswatch.com/pulse/)
 - [Font Awesome](https://fontawesome.com/)
 - [Django](https://www.djangoproject.com/)
