@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanbany - Modern Task Management</title>
+    <style>
+        :root {
+            --primary: #871570;
+            --primary-light: #a71b8d;
+            --accent: #2ecc71;
+            --bg-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kanban-board {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+        .column-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .column-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .task {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .task:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task.priority-high {
+            border-left-color: #e74c3c;
+        }
+
+        .task.priority-medium {
+            border-left-color: #f39c12;
+        }
+
+        .task.priority-low {
+            border-left-color: var(--accent);
+        }
+
+        .task h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .task p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(135, 21, 112, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(135, 21, 112, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(135, 21, 112, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Kanbany</h1>
+        <p>Transform your workflow with our beautiful and intuitive Kanban board. Organize tasks, track progress, and boost productivity with style.</p>
+    </div>
+
+    <div class="kanban-board">
+        <div class="column">
+            <div class="column-header">
+                <h2>To Do</h2>
+            </div>
+            <div class="task priority-high">
+                <h3>Design New Landing Page</h3>
+                <p>Create a modern and engaging landing page design</p>
+                <div class="task-meta">
+                    <span>High Priority</span>
+                    <span>Due: 2d</span>
+                </div>
+            </div>
+            <div class="task priority-low">
+                <h3>Update Documentation</h3>
+                <p>Review and update the user documentation</p>
+                <div class="task-meta">
+                    <span>Low Priority</span>
+                    <span>Due: 5d</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h2>In Progress</h2>
+            </div>
+            <div class="task priority-medium">
+                <h3>Implement Search Feature</h3>
+                <p>Add search functionality to the dashboard</p>
+                <div class="task-meta">
+                    <span>Medium Priority</span>
+                    <span>Progress: 60%</span>
+                </div>
+            </div>
+            <div class="task priority-high">
+                <h3>Fix Mobile Layout</h3>
+                <p>Resolve responsive design issues on mobile devices</p>
+                <div class="task-meta">
+                    <span>High Priority</span>
+                    <span>Progress: 80%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h2>Done</h2>
+            </div>
+            <div class="task priority-medium">
+                <h3>User Authentication</h3>
+                <p>Implement secure login and registration system</p>
+                <div class="task-meta">
+                    <span>Completed</span>
+                    <span>✓</span>
+                </div>
+            </div>
+            <div class="task priority-low">
+                <h3>Email Notifications</h3>
+                <p>Set up automated email notification system</p>
+                <div class="task-meta">
+                    <span>Completed</span>
+                    <span>✓</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'tasks:register' %}" class="cta-button">Get Started Now</a>
+</body>
+</html>

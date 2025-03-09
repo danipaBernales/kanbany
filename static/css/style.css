@@ -5,24 +5,16 @@
 :root {
   /* Main Colors */
   --primary-color: #871570;
-  --primary-light: #ad3697;
-  --primary-dark: #5f0f50;
   --secondary-color: #ea6936;
-  --secondary-light: #ec9b64;
-  --secondary-dark: #cf4a22;
-  --accent-color: #18d071;
-  --accent-light: #63fdad;
-  --accent-dark: #198d51;
+  --primary-dark: #5e0f4e;
   
   /* Background Colors */
-  --background-color: #eeeeee;
-  --background-alt: #f1f1f1;
-  --background-dark: #c1c1c1;
+  --background-color: #ffffff;
+  --background-alt: #f8f9fa;
   
   /* Text Colors */
   --text-color: #212529;
-  --text-muted: #000000;
-  --text-light: #adb5bd;
+  --text-muted: #6c757d;
   
   /* Status Colors */
   --danger-color: #e92d40;
@@ -45,54 +37,98 @@
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  --gradient-success: linear-gradient(135deg, var(--success-color), var(--success-light));
-  --gradient-info: linear-gradient(135deg, var(--info-color), var(--info-light));
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  --gradient-success: linear-gradient(135deg, var(--success-color), var(--success-dark));
+  --gradient-info: linear-gradient(135deg, var(--info-color), var(--info-dark));
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 76px;
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* Navbar */
-.navbar.navbar-expand-lg.navbar-dark {
-  background-color: var(--primary-color) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.navbar {
+  background: var(--gradient-primary) !important;
+  box-shadow: var(--shadow-md);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 1rem 0;
+  backdrop-filter: blur(8px);
 }
 
-.navbar.navbar-expand-lg.navbar-dark .navbar-nav .nav-link {
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.9) !important;
   transition: all 0.2s ease;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
 }
 
-.navbar.navbar-expand-lg.navbar-dark .navbar-nav .nav-link:hover {
-  color: white !important;
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--secondary-color) !important;
   transform: translateY(-1px);
 }
 
+.navbar-dark .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
 /* Scrollbar Styling */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  width: 10px !important;
-  background-color: var(--background-color) !important;
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background-color: var(--background-color);
 }
 
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  background: var(--background-color) !important;
-  border-radius: 5px !important;
+::-webkit-scrollbar-track {
+  background: var(--background-alt);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  margin: 4px;
 }
 
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color) !important;
-  border-radius: 5px !important;
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 6px;
+  border: 2px solid var(--background-alt);
+  min-height: 40px;
 }
 
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-color) !important;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--background-alt);
 }
 
 /* Kanban Board */
@@ -112,11 +148,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .kanban-column h5 {
-  color: var(--success-color);
+  color: var(--primary-color);
   font-weight: 600;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--success-color);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .task-card {
@@ -179,13 +215,14 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .btn-outline-primary {
-  color: #6988c7 !important;
-  border-color: #6988c7 !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: #78c2ad !important;
+  background: var(--gradient-primary) !important;
   color: white !important;
+  border: none !important;
 }
 
 /* Alert */
@@ -196,19 +233,23 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .card-header.bg-primary {
-  background: var(--gradient-success) !important;
+  background: var(--gradient-primary) !important;
   border: none;
   border-radius: 8px 8px 0 0;
+  color: white !important;
 }
 
 .btn-success {
-  background-color: #78c2ad !important;
-  border-color: #78c2ad !important;
+  background: var(--gradient-success) !important;
+  border: none !important;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
 }
 
 .btn-success:hover {
-  background-color: #66a593 !important;
-  border-color: #66a593 !important;
+  background: linear-gradient(135deg, var(--success-dark), var(--success-color)) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Footer Styling */
