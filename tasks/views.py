@@ -6,6 +6,9 @@ from django.contrib import messages
 from .models import Task, WorkerGroup, UserProfile
 from django.db.models import Count
 from django.utils import timezone
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login, authenticate
+from django.urls import reverse_lazy
 
 def index(request):
     return render(request, 'tasks/index.html')
@@ -14,9 +17,13 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Account created successfully! You can now login.')
-            return redirect('tasks:login')
+            try:
+                user = form.save()
+                UserProfile.objects.get_or_create(user=user)
+                messages.success(request, 'Account created successfully! You can now login.')
+                return redirect('tasks:login')
+            except Exception as e:
+                messages.error(request, 'An error occurred during registration. Please try again.')
     else:
         form = UserRegistrationForm()
     return render(request, 'tasks/register.html', {'form': form})
@@ -81,4 +88,43 @@ def task_list(request):
         'review_tasks': tasks.filter(status='REVIEW'),
     }
     return render(request, 'tasks/task_list.html', context)
+    
+
+class CustomLoginView(LoginView):
+    template_name = 'tasks/login.html'
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('tasks:dashboard')
+    
+    def form_valid(self, form):
+        try:
+            username = form.cleaned_data.get('username')
+            user = authenticate(
+                self.request,
+                username=username,
+                password=form.cleaned_data.get('password')
+            )
+            
+            if user is None:
+                messages.error(self.request, 'Invalid username or password.')
+                return self.form_invalid(form)
+            
+            profile, created = UserProfile.objects.get_or_create(user=user)
+            
+            if not profile.is_active:
+                messages.error(self.request, 'Your account is not active.')
+                return self.form_invalid(form)
+            
+            login(self.request, user)
+            messages.success(self.request, f'Welcome back, {username}!')
+            return super().form_valid(form)
+            
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f'Login error for user {username}: {str(e)}')
+            messages.error(self.request, 'An error occurred during login. Please try again.')
+            return self.form_invalid(form)
+    
+    def get_success_url(self):
+        return str(self.success_url)
     
