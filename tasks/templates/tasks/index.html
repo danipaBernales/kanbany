@@ -1,67 +1,130 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container">
-  <div class="row align-items-center min-vh-75 py-5 mt-5">
-    <div class="col-lg-6 mb-5 mb-lg-0">
-      <div class="text-center text-lg-start">
-        <h2
-          class="display-5 fw-bold mb-4 text-uppercase"
-          style="color: var(--primary-color)"
-        >
-          Welcome to
-        </h2>
-        <div
-          class="d-flex align-items-center justify-content-center justify-content-lg-start mb-4"
-        >
-          <i
-            class="fas fa-tasks fa-4x me-3"
-            style="color: var(--primary-color)"
-          ></i>
-          <h1
-            class="display-1 fw-bold m-10"
-            style="color: var(--primary-color)"
+  <div class="header text-center py-5">
+    <h1 class="display-1 fw-bold" style="color: var(--primary-color)">
+      <i class="fas fa-tasks me-3"></i>Kanbany
+    </h1>
+    <p class="lead fs-3 mb-4" style="color: var(--text-color)">
+      Transform your workflow with our beautiful and intuitive Kanban board.
+      Organize tasks, track progress, and boost productivity with style.
+    </p>
+    {% if not user.is_authenticated %}
+    <div class="d-flex justify-content-center gap-3 mb-5">
+      <a
+        href="{% url 'tasks:login' %}"
+        class="btn btn-success btn-lg shadow-sm"
+      >
+        <i class="fas fa-sign-in-alt me-2"></i>Login
+      </a>
+      <a
+        href="{% url 'tasks:register' %}"
+        class="btn btn-success btn-lg shadow-sm"
+      >
+        <i class="fas fa-user-plus me-2"></i>Register
+      </a>
+    </div>
+    {% else %}
+    <div class="text-center mb-5">
+      <a
+        href="{% url 'tasks:dashboard' %}"
+        class="btn btn-success btn-lg shadow-sm"
+      >
+        <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+      </a>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="kanban-board mb-5">
+    <div class="column" data-aos="fade-up" data-aos-delay="100">
+      <div class="column-header">
+        <h2><i class="fas fa-list me-2"></i>To Do</h2>
+      </div>
+      <div class="task priority-high" data-aos="zoom-in" data-aos-delay="200">
+        <h3>Design New Landing Page</h3>
+        <p>Create a modern and engaging landing page design</p>
+        <div class="task-meta">
+          <span
+            ><i class="fas fa-exclamation-circle me-1"></i>High Priority</span
           >
-            Kanbany
-          </h1>
+          <span><i class="far fa-clock me-1"></i>Due: 2d</span>
         </div>
-        <p class="lead fs-3 mb-4" style="color: var(--text-color)">
-          Your modern task management solution. Organize, track, and collaborate
-          on projects with ease.
-        </p>
-        {% if not user.is_authenticated %}
-        <div class="d-grid gap-2 d-md-flex mb-5">
-          <a
-            href="{% url 'tasks:register' %}"
-            class="btn btn-success btn-lg me-md-2 shadow-sm"
-          >
-            <i class="fas fa-user-plus me-2"></i>Get Started
-          </a>
-          <a
-            href="{% url 'tasks:login' %}"
-            class="btn btn-success btn-lg shadow-sm"
-          >
-            <i class="fas fa-sign-in-alt me-2"></i>Login
-          </a>
+      </div>
+      <div class="task priority-low" data-aos="zoom-in" data-aos-delay="300">
+        <h3>Update Documentation</h3>
+        <p>Review and update the user documentation</p>
+        <div class="task-meta">
+          <span><i class="fas fa-info-circle me-1"></i>Low Priority</span>
+          <span><i class="far fa-clock me-1"></i>Due: 5d</span>
         </div>
-        {% else %}
-        <div class="d-grid gap-2 d-md-flex mb-5">
-          <a
-            href="{% url 'tasks:dashboard' %}"
-            class="btn btn-success btn-lg me-md-2 shadow-sm"
-          >
-            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
-          </a>
-        </div>
-        {% endif %}
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="text-center p-4">
-        <img
-          src="{% static 'img/kanban-illustration.svg' %}"
-          alt="Kanban Board"
-          class="img-fluid rounded shadow-sm"
-          style="max-width: 100%; height: auto"
-        />
+
+    <div class="column" data-aos="fade-up" data-aos-delay="200">
+      <div class="column-header">
+        <h2><i class="fas fa-spinner me-2"></i>In Progress</h2>
+      </div>
+      <div class="task priority-medium" data-aos="zoom-in" data-aos-delay="400">
+        <h3>Implement Search Feature</h3>
+        <p>Add search functionality to the dashboard</p>
+        <div class="task-meta">
+          <span><i class="fas fa-exclamation me-1"></i>Medium Priority</span>
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              style="width: 60%"
+              aria-valuenow="60"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              60%
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="task priority-high" data-aos="zoom-in" data-aos-delay="500">
+        <h3>Fix Mobile Layout</h3>
+        <p>Resolve responsive design issues on mobile devices</p>
+        <div class="task-meta">
+          <span
+            ><i class="fas fa-exclamation-circle me-1"></i>High Priority</span
+          >
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              style="width: 80%"
+              aria-valuenow="80"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              80%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column" data-aos="fade-up" data-aos-delay="300">
+      <div class="column-header">
+        <h2><i class="fas fa-check-circle me-2"></i>Done</h2>
+      </div>
+      <div class="task priority-medium" data-aos="zoom-in" data-aos-delay="600">
+        <h3>User Authentication</h3>
+        <p>Implement secure login and registration system</p>
+        <div class="task-meta">
+          <span><i class="fas fa-check me-1"></i>Completed</span>
+          <span class="badge bg-success"><i class="fas fa-check"></i></span>
+        </div>
+      </div>
+      <div class="task priority-low" data-aos="zoom-in" data-aos-delay="700">
+        <h3>Email Notifications</h3>
+        <p>Set up automated email notification system</p>
+        <div class="task-meta">
+          <span><i class="fas fa-check me-1"></i>Completed</span>
+          <span class="badge bg-success"><i class="fas fa-check"></i></span>
+        </div>
       </div>
     </div>
   </div>
