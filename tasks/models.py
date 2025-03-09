@@ -8,6 +8,17 @@ from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+class Organization(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    domain = models.CharField(max_length=100, blank=True, help_text='Organization email domain')
+
+    def __str__(self):
+        return self.name
+
 class UserProfile(models.Model):
     ROLE_CHOICES = [
         ('MEMBER', 'Team Member'),
@@ -16,6 +27,7 @@ class UserProfile(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='members', null=True)
     bio = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
@@ -23,6 +35,9 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='MEMBER')
     department = models.CharField(max_length=100, blank=True)
     is_active = models.BooleanField(default=True)
+    corporate_email = models.EmailField(blank=True, help_text='Organization email address')
+    job_title = models.CharField(max_length=100, blank=True)
+    date_joined_org = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
@@ -40,6 +55,7 @@ def save_user_profile(sender, instance, **kwargs):
 class WorkerGroup(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='groups')
     leader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='led_groups')
     members = models.ManyToManyField(User, related_name='member_groups')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -47,6 +63,9 @@ class WorkerGroup(models.Model):
     is_active = models.BooleanField(default=True)
     max_members = models.PositiveIntegerField(default=10)
     color_tag = models.CharField(max_length=7, default='#0d6efd')
+    parent_group = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='subgroups')
+    group_type = models.CharField(max_length=50, default='team', help_text='Type of group (e.g., team, department, division)')
+    access_level = models.IntegerField(default=0, help_text='Hierarchical access level within the organization')
 
     class Meta:
         ordering = ['-created_at']
@@ -86,10 +105,16 @@ class Task(models.Model):
     task_type = models.CharField(max_length=15, choices=TASK_TYPE_CHOICES, default='OTHER')
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_tasks')
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_tasks')
-    group = models.ForeignKey(WorkerGroup, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
+    workgroup = models.ForeignKey(WorkerGroup, on_delete=models.CASCADE, related_name='tasks')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     due_date = models.DateTimeField(null=True, blank=True)
+    estimated_hours = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    actual_hours = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    tags = models.CharField(max_length=200, blank=True, help_text='Comma-separated tags')
+    parent_task = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='subtasks')
+    order = models.PositiveIntegerField(default=0, help_text='Order within the same status')
+    watchers = models.ManyToManyField(User, related_name='watched_tasks', blank=True)
 
     def __str__(self):
         return self.title

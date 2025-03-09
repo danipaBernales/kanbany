@@ -2,17 +2,41 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
-from .models import Task, UserProfile
+from django.core.exceptions import ValidationError
+from .models import Task, UserProfile, Organization
 
 class UserRegistrationForm(UserCreationForm):
+    ROLE_CHOICES = [
+        ('CEO', 'Chief Executive Officer'),
+        ('MANAGER', 'Manager'),
+        ('SUPERVISOR', 'Supervisor'),
+        ('EMPLOYEE', 'Employee')
+    ]
+
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
         'class': 'form-control',
-        'placeholder': _('Enter your email')
+        'placeholder': _('Enter your corporate email')
+    }))
+    organization_name = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': _('Enter organization name')
+    }))
+    organization_domain = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': _('Enter organization email domain (e.g., company.com)')
+    }))
+    job_title = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': _('Enter your job title')
+    }))
+    role = forms.ChoiceField(choices=ROLE_CHOICES, required=True, widget=forms.Select(attrs={
+        'class': 'form-select',
+        'placeholder': _('Select your role')
     }))
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'organization_name', 'organization_domain', 'job_title', 'role', 'password1', 'password2']
         widgets = {
             'username': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -31,11 +55,45 @@ class UserRegistrationForm(UserCreationForm):
             'placeholder': _('Confirm your password')
         })
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        domain = email.split('@')[1] if '@' in email else ''
+        
+        # List of common public email domains to reject
+        public_domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com']
+        
+        if domain.lower() in public_domains:
+            raise ValidationError(_('Please use your corporate email address. Public email domains are not allowed.'))
+        
+        if User.objects.filter(email=email).exists():
+            raise ValidationError(_('This email address is already registered.'))
+        
+        return email
+
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
+        
         if commit:
             user.save()
+            
+            # Create or get organization
+            organization, created = Organization.objects.get_or_create(
+                domain=self.cleaned_data['organization_domain'],
+                defaults={
+                    'name': self.cleaned_data['organization_name'],
+                    'is_active': True
+                }
+            )
+            
+            # Update user profile
+            profile = user.userprofile
+            profile.organization = organization
+            profile.job_title = self.cleaned_data['job_title']
+            profile.role = 'ADMIN' if self.cleaned_data['role'] == 'CEO' else 'LEADER' if self.cleaned_data['role'] in ['MANAGER', 'SUPERVISOR'] else 'MEMBER'
+            profile.corporate_email = user.email
+            profile.save()
+            
         return user
 
 class ProfileUpdateForm(forms.ModelForm):

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Kanbany!</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f5f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(135, 21, 112, 0.1);
+        padding: 30px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+      }
+      h1 {
+        color: #871570;
+        margin: 0;
+        font-size: 24px;
+      }
+      .content {
+        color: #34495e;
+        margin: 20px 0;
+      }
+      .content strong {
+        color: #871570;
+      }
+      .button {
+        display: inline-block;
+        background-color: #871570;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        margin: 20px 0;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #6b1159;
+      }
+      .footer {
+        text-align: center;
+        color: #7f8c8d;
+        font-size: 14px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #f0e8ef;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="{{ logo_url }}" alt="Kanbany Logo" class="logo" />
+        <h1>Welcome to Kanbany!</h1>
+      </div>
+
+      <div class="content">
+        <p>Hi {{ invitee_name }},</p>
+
+        <p>
+          <strong>{{ inviter_name }}</strong> has invited you to join the
+          <strong>{{ organization_name }}</strong> workspace on Kanbany!
+        </p>
+
+        <p>
+          You've been invited as a <strong>{{ role }}</strong> to collaborate
+          with the team. With Kanbany, you'll be able to:
+        </p>
+
+        <ul>
+          <li>Manage and track tasks efficiently</li>
+          <li>Collaborate with your team members</li>
+          <li>Stay updated on project progress</li>
+          <li>Organize work using our intuitive Kanban boards</li>
+        </ul>
+
+        <p style="text-align: center">
+          <a href="{{ invitation_link }}" class="button">Accept Invitation</a>
+        </p>
+
+        <p><small>This invitation will expire in 7 days.</small></p>
+      </div>
+
+      <div class="footer">
+        <p>Need help? Contact our support team at support@kanbany.com</p>
+        <p>&copy; {% now "Y" %} Kanbany. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
