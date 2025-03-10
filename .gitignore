@@ -8,10 +8,10 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Build outputs
-dist/
-build/
-*.egg-info/
-staticfiles/
+dist
+build
+*.egg-info
+staticfiles
 *.manifest
 *.spec
 
@@ -30,7 +30,7 @@ db.sqlite3-journal
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
-.idea/
+.idea
 .DS_Store
 *.swp
 *.swo
@@ -38,17 +38,19 @@ db.sqlite3-journal
 # Testing and coverage
 .coverage
 coverage/
-.pytest_cache/
-htmlcov/
-.tox/
-.nox/
+.pytest_cache
+htmlcov
+.tox
+.nox
 
 # Django specific
-media/
+media
 static/admin/
 *.mo
 *.pot
 
-# Deployment
-.netlify/
-.supabase/
+# Local Netlify folder
+.netlify
+
+# Supabase
+.supabase
